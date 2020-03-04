@@ -2,7 +2,7 @@
 <html>
 <head>
 
-  <title>OPTC Legend Checklist</title>
+  <title>Arknights Box Tracker</title>
   <!--tracking-->
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-136683124-5"></script>
@@ -24,14 +24,13 @@
 
   <!--scripts-->
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript" src="js/flairs.js"></script>
   <script type="text/javascript" src="js/scripts.js"></script>
   <script type="text/javascript" src="js/html2canvas.min.js"></script>
 
   <!--meta-->
   <meta charset="utf-8">
   <meta name="author" content="antonlabz">
-  <meta name="description" content="Legend Checklist for OPTC">
+  <meta name="description" content="Unit Tracker/Checklist for Arknights">
 </head>
 
 <body>
@@ -40,17 +39,12 @@
   <div class="header"></div>
 
   <span id="counter"></span>
-  <br>
-  <span id="counter2"></span>
-  <br>
-  <span id="rainbow"></span>
 
   <div class="buttons">
     <button id="select-all">Select All</button>
     <button id="select-none">Reset</button>
-    <button id="show-base">Show 6* Forms of Super-Evos</button>
-    <button id="hide-base">Hide 6* Forms of Super-Evos</button>
-    <button id="show-hidden">Show Removed Legends</button>
+    <button id="show-cn">Show CN units</button>
+    <button id="hide-cn">Hide CN units</button>
     <button id="generate" onclick="generateImage()">Generate Image</button>
   </div>
 
@@ -68,28 +62,12 @@
 
   <div class="container2">
     <label class="switch">
-      <input id="switch" type="checkbox">
-      <span class="slider round"></span>
-    </label>
-    <span class="tooltip">- toggle rainbow mode</span>
-
-    <label class="switch2">
-      <input id="hide-legends" type="checkbox">
+      <input id="toggle-e2" type="checkbox" onchange="E2toggle()">
       <span class="slider"></span>
     </label>
-    <span class="tooltip2">- remove legends from list</span>
-      <div id="special"></div>
+    <span class="tooltip">- toggle E2</span>
 
-      <?php
-      $dir = "images/icons/";
-
-      // Sort in ascending order - this is default
-      $a = scandir($dir);
-
-      print_r($a);
-
-
-      ?>
+    <div id="box"></div>
   </div>
 
 </body>
