@@ -106,12 +106,12 @@ function updatePage() {
   const store = readAllStorage();
   //restore the selected class
   $.each(store, function(index, elem) {
-    if(elem['value'] == 'true') {
+    if(elem['value'] == 'shown') {
       $('.cn').toggleClass('hidden');
-      $('#show-cn').css('display', 'none');
-      $('#hide-cn').css('display', 'inline-block');
+      $('#show-cn').html('Hide CN units');
+      $('#show-cn').attr('id', 'hide-cn');
     }
-    else if (elem['value'] == 'true2'){
+    else if (elem['value'] == 'true'){
       $('#toggle-e2').prop('checked', true);
       E2toggle();
     }
@@ -293,7 +293,7 @@ function E2toggle(){
         if(search2 == search3) {
           img.attr('src', img.attr('src').replace(/_1\./i, '_2.'));
         }
-        updateStorage("e2", 'true2', true);
+        updateStorage("e2", 'true', true);
       }
     }
     //not toggled
@@ -307,6 +307,12 @@ function E2toggle(){
 
 
 jQuery(document).ready(function($) {
+
+  //adds HTML to show-cn button on page load
+  if (localStorage.getItem("cn") === null){
+    $('#show-cn').html('Show CN units');
+  }
+
   //SPECIAL FLAIRS
   loadSpecial = function() {
     var enter = document.getElementById('box');
@@ -604,18 +610,18 @@ jQuery(document).ready(function($) {
   });
 
   //show CN units
-  $("#show-cn").on("click", function() {
+  $(document).on("click", "#show-cn", function() {
     $('.cn').toggleClass('hidden');
-    $('#show-cn').css('display', 'none');
-    $('#hide-cn').css('display', 'inline-block');
-    updateStorage("cn", 'true', true);
+    $('#show-cn').html('Hide CN units');
+    $('#show-cn').attr('id', 'hide-cn');
+    updateStorage("cn", 'shown', true);
   });
 
   //hide CN units
-  $("#hide-cn").on("click", function() {
+  $(document).on("click", "#hide-cn", function() {
     $('.cn').toggleClass('hidden');
-    $('#hide-cn').css('display', 'none');
-    $('#show-cn').css('display', 'inline-block');
+    $('#hide-cn').html('Show CN units');
+    $('#hide-cn').attr('id', 'show-cn');
     updateStorage("cn", null, false);
   });
 });
